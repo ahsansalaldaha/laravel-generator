@@ -3,6 +3,7 @@
 namespace InfyOm\Generator\Commands\API;
 
 use InfyOm\Generator\Commands\PublishBaseCommand;
+use InfyOm\Generator\Utils\TemplateUtil;
 
 class TestCasesPublisherCommand extends PublishBaseCommand
 {
@@ -27,15 +28,15 @@ class TestCasesPublisherCommand extends PublishBaseCommand
      */
     public function handle()
     {
-        $traitPath = __DIR__.'/../../../templates/test/api_test_trait.stub';
+        $traitPath = __DIR__ . '/../../../templates/test/api_test_trait.stub';
 
         $testsPath = config('infyom.laravel_generator.path.api_test', base_path('tests/'));
 
-        $this->publishFile($traitPath, $testsPath.'ApiTestTrait.php', 'ApiTestTrait.php');
+        $this->publishFile($traitPath, $testsPath . "ApiTestTrait.php", 'ApiTestTrait.php');
 
-        if (!file_exists($testsPath.'traits/')) {
-            mkdir($testsPath.'traits/');
-            $this->info('traits directory created');
+        if(!file_exists($testsPath . "traits/")) {
+            mkdir($testsPath . "traits/");
+            $this->info("traits directory created");
         }
     }
 
